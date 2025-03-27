@@ -7,10 +7,12 @@ const passport=require('passport');
 const LocalStrategy = require('passport-local');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const sessionConfig=require('./src/config/sessionConfig.js');
+const passportSetup = require('./src/config/passport.js');  // always important to require this file while working with google authentication 
 const connectDB=require('./src/config/dbConfig.js');
 const authRoute=require('./src/routes/authRoutes.js');
 const User = require('./src/models/user');
 const PORT=8080;
+const flash = require('connect-flash');
 connectDB();
 // app.set('trust proxy',1);  // enable during production 
 app.use(cors({
@@ -21,7 +23,7 @@ app.use(cors({
 app.use(express.json()); // used to parse JSON data
 app.use(express.urlencoded({extended:true})); // used to parse data from the URL
 app.use(session(sessionConfig));
-// app.use(flash());
+app.use(flash());
 
 
 

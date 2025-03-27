@@ -4,7 +4,7 @@ const { signin, login, getUser,
     loginFailed,
     logout,
     googleAuth,
-    googleCallback } = require("../controllers/authController");
+    googleCallback } = require("../controllers/authController.js");
 
 const router = express.Router();
 

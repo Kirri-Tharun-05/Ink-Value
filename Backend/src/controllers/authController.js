@@ -1,9 +1,8 @@
 const passport = require("passport");
 const User = require("../models/user.js");
-const status = require("http-status");
-const CLIENT_URL = "https://video-conference-application-frontend.onrender.com/home";
-
-// ToDO fix http status codes
+const httpStatus= require('http-status');
+// const CLIENT_URL = "https://video-conference-application-frontend.onrender.com/home";
+const CLIENT_URL = "http://localhost:5173/home";
 
 exports.signin = async (req, res) => {
   try {
@@ -11,12 +10,11 @@ exports.signin = async (req, res) => {
     const { username, password } = req.body;
     const newUser = new User({ username });
     const result = await User.register(newUser, password);
-
     console.log("✅ Registered:", result);
-    res.status(status.OK).json({ message: "Registered Successfully" });
+    res.status(httpStatus.status.OK).json({ message: "Registered Successfully" });
   } catch (error) {
     console.error("❌ Error:", error);
-    res.status(status.FORBIDDEN).json({ message: error.message });
+    res.status(httpStatus.status.FORBIDDEN).json({ message: error.message });
   }
 };
 
@@ -24,23 +22,25 @@ exports.login = (req, res, next) => {
   passport.authenticate("local", (err, user) => {
     if (err) return next(err);
     if (!user) {
-      return res.status(status.UNAUTHORIZED).json({ message: "Invalid credentials" });
+      return res.status(httpStatus.status.UNAUTHORIZED).json({ message: "Invalid credentials" });
     }
 
     req.logIn(user, (err) => {
       if (err) return next(err);
-      return res.status(status.OK).json({ message: "Successfully Logged In", user });
+      return res.status(httpStatus.status.OK).json({ message: "Successfully Logged In", user });
     });
   })(req, res, next);
 };
 
 
 exports.getUser = (req, res) => {
+    console.log('inside Get Users route', req.user);
+    console.log('inside Get Users route', req.session);
     if (req.user) {
         console.log("✅ Authenticated User:", req.user);
         res.status(200).json(req.user);
     } else {
-        res.status(401).json({ message: "Not authenticated" });
+        res.status(401).json({ message: "Not authenticated inside getUser Route" });
     }
 };
 

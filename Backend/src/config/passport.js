@@ -1,11 +1,11 @@
+const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const passport = require("passport");
 const User = require('../models/user');
 // const User = require('../src/models/user');
-const callbackURL =
-  process.env.NODE_ENV === "production"
-    ? "https://video-conference-application-backend.onrender.com/auth/google/callback"
-    : "http://localhost:8080/auth/google/callback";
+const callbackURL ="http://localhost:8080/auth/google/callback";
+//   process.env.NODE_ENV === "production"
+//     ? "https://video-conference-application-backend.onrender.com/auth/google/callback"
+//     : "http://localhost:8080/auth/google/callback";
 passport.use(
     new GoogleStrategy(
         {

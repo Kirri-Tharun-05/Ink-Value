@@ -13,8 +13,8 @@ const sessionConfig = {
     expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 1 Week
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
-    secure: true,
-    sameSite: "None",
+    secure: false, // change in production
+    sameSite: "Lax", // change to None in production
   },
 };
 

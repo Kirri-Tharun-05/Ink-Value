@@ -12,6 +12,7 @@ const Navbar = () => {
       const res = await axios.get(`${server}/auth/user`, {
         withCredentials: true // ✅ Required for cookies
       });
+      console.log('inside Navbar.hsx : ',res);
       setCurrUser(res.data); // ✅ Set user state
     } catch (error) {
       if (error.response && error.response.status === 401) {

@@ -11,8 +11,7 @@ const Login = () => {
   const handleSubmit= async(e)=>{
     e.preventDefault();
     try{
-      const result= await axios.post(`${server}/login`,{
-        username,password },{ withCredentials: true })
+      const result= await axios.post(`${server}/auth/login`,{username,password },{ withCredentials: true })
       console.log(result);
       localStorage.setItem('flashMessage', result.data.message);
       window.dispatchEvent(new Event("userLoggedIn"));
