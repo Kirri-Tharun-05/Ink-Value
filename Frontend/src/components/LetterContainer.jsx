@@ -16,11 +16,10 @@ function LetterContainer() {
     const [isSavingToDrive, setIsSavingToDrive] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
-
     // Load draft when component mounts
     useEffect(() => {
         if (draftId) {
-            axios.get(`http://localhost:8080/api/drafts/${draftId}`, { withCredentials: true })
+            axios.get(`https://ink-value-backend.onrender.com/api/drafts/${draftId}`, { withCredentials: true })
                 .then(response => {
                     setContent(response.data.content);
                 })
@@ -28,7 +27,7 @@ function LetterContainer() {
                     console.error("Error fetching draft:", error);
                 });
         }
-        axios.get("http://localhost:8080/auth/token", { withCredentials: true })
+        axios.get("https://ink-value-backend.onrender.com/auth/token", { withCredentials: true })
             .then(response => {
                 if (response.data.token) {
                     console.log('inside letterContainer logs : ', response.data);
@@ -39,7 +38,7 @@ function LetterContainer() {
                 console.error("Failed to fetch token", error);
             });
 
-        axios.get("http://localhost:8080/auth/user", { withCredentials: true })
+        axios.get("https://ink-value-backend.onrender.com/auth/user", { withCredentials: true })
             .then(response => {
                 console.log("User info:", response.data);
                 setUser(response.data);
@@ -50,7 +49,7 @@ function LetterContainer() {
     // Save draft to localStorage
     const saveDraft = async () => {
         try {
-            const response = await axios.post("http://localhost:8080/api/drafts/save",
+            const response = await axios.post("https://ink-value-backend.onrender.com/api/drafts/save",
                 {
                     userId: user._id,  // Get from authenticated user
                     title: fileName,
@@ -81,7 +80,7 @@ function LetterContainer() {
 
         try {
             const response = await axios.post(
-                "http://localhost:8080/upload",
+                "https://ink-value-backend.onrender.com/upload",
                 { content, fileName: fileName },
                 { withCredentials: true }
             );
