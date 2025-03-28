@@ -43,11 +43,13 @@ import SignIn from './components/Signin';
 import LogIn from './components/Login';
 import Home from './components/Home';
 import PageNotFound from './components/PageNotFound';
+import  {LetterContainer}  from './components/LetterContainer';
 function Layout() {
   const location = useLocation();
   return (
-    <div className={`max-w-7xl mx-auto px-6 py-20`}>
+    <div className={`max-w-7xl mx-auto px-6`}>
       <Routes>
+        <Route path='/text_edit' element={<LetterContainer/>}/>
         <Route path="/home" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/login" element={<LogIn />} />

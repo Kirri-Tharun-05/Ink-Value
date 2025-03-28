@@ -6,7 +6,7 @@ const user=new Schema({
     email: String,
     googleId: String,
     profilePicture: String,
-    token:{type:String}
+    accessToken:{type:String} // can cause error ----------<
 })
 
 // Buy default this plugin function passport-local-mongoose will add a username, hash and salted field to store the username,the hashed password and the salt value.

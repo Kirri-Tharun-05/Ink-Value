@@ -9,7 +9,9 @@
   color-scheme: dark;
   /* --gradient:linear-gradient(90deg, #8a2387, #e94057, #f27121); */
 }
-
+.jodit-wysiwyg {
+  color: black !important; /* Change to white if using a dark theme */
+}
 .meetVideoContainer {
   position: relative;
   align-items: center;
@@ -362,6 +364,9 @@ button {
   transform: translateY(0px);
 }
 
+.text-editor{
+  height:65Vh !important ;
+}
 
 @keyframes fadeIn {
   from {

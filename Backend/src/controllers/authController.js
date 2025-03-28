@@ -85,12 +85,12 @@ exports.logout = (req, res, next) => {
     });
 };
 
-exports.googleAuth = passport.authenticate("google", {
-    scope: ["profile", "email"],
-    prompt: "select_account",
-});
+// exports.googleAuth = passport.authenticate("google", {
+//     scope: ["profile", "email"],
+//     prompt: "select_account",
+// });
 
-exports.googleCallback = passport.authenticate("google", {
-    successRedirect: CLIENT_URL,
-    failureRedirect: "/auth/login/failed",
-});
+// exports.googleCallback = passport.authenticate("google", {
+//     successRedirect: CLIENT_URL,
+//     failureRedirect: "/auth/login/failed",
+// });

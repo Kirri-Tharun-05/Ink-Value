@@ -1,3 +1,14 @@
     secure: false, // change in production  --> true
     sameSite: "Lax", // change to None in production  ---> None
     good
+
+    on production 
+    go t google console and remove the test user 
+    ✅ Option 2: Publish the App to Production (Remove Test User Restriction)
+Only do this if you plan to make the app publicly available.
+
+Go to OAuth Consent Screen in Google Cloud Console.
+
+Click Publish App to move it from "Testing" to "Production".
+
+This will allow any user to log in, but Google may require app verification
