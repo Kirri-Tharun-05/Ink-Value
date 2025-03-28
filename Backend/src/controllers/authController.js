@@ -55,7 +55,7 @@ exports.logout = (req, res, next) => {
                 path: "/",
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                sameSite: "none",
+                sameSite: "None",
             });
 
             console.log("✅ User logged out successfully");

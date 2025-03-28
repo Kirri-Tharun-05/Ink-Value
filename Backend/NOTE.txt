@@ -1,6 +1,5 @@
     secure: false, // change in production  --> true
     sameSite: "Lax", // change to None in production  ---> None
-    good
 
     on production 
     go t google console and remove the test user 

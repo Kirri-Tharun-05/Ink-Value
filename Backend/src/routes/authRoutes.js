@@ -41,7 +41,7 @@ router.get(
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production", // Set true in production
-            sameSite: "Strict",
+            sameSite: "None",
             path: "/" // Make it accessible everywhere
         });
 
