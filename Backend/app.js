@@ -101,6 +101,7 @@ const sessionConfig = require('./src/config/sessionConfig.js');
 const passportSetup = require('./src/config/passport.js'); // Always important for Google Auth
 const authRoute = require('./src/routes/authRoutes.js');
 const User = require('./src/models/user');
+const draftRoute=require('./src/routes/draftRoutes.js');
 
 const PORT = 8080;
 
@@ -130,7 +131,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // ✅ Routes
 app.use("/auth", authRoute);
-
+app.use("/api/drafts", draftRoute);
 // ✅ Home Route
 app.get('/home', (req, res) => {
     res.send('On Home Route');

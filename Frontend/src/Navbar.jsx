@@ -34,7 +34,7 @@ const Navbar = () => {
   }, []);
 
   const handleHistory = ()=>{
-    navigate('/history');
+    navigate('/my_draft_files');
   }
 
   const handleLogout = async () => {
@@ -64,7 +64,7 @@ const Navbar = () => {
                 </>
               ) : (
                 <>
-                  <button onClick={handleHistory}> History</button>
+                  <button onClick={handleHistory}>My Draft</button>
                   < button className='cursor-pointer border-2 px-4 py-2 rounded-lg bg-gradient-to-r from-orange-500 to-orange-900 pointer' onClick={handleLogout}>Log Out</button>
                 </>
               )

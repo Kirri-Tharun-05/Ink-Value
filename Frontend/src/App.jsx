@@ -44,16 +44,18 @@ import LogIn from './components/Login';
 import Home from './components/Home';
 import PageNotFound from './components/PageNotFound';
 import  {LetterContainer}  from './components/LetterContainer';
+import MyDrafts from './components/MyDrafts';
 function Layout() {
   const location = useLocation();
   return (
     <div className={`max-w-7xl mx-auto px-6`}>
       <Routes>
         <Route path='/text_edit' element={<LetterContainer/>}/>
+        <Route path="/text_edit/:id" element={<LetterContainer />} />
         <Route path="/home" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/login" element={<LogIn />} />
-        {/* <Route path="/button" element={<Button/>} /> */}
+        <Route path="/my_draft_files" element={<MyDrafts />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>

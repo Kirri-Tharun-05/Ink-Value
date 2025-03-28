@@ -3,8 +3,8 @@
 
 
 :root {
-  font-family: "Iansui", cursive;
-  font-style: normal;
+  /* font-family: "Iansui", cursive;
+  font-style: normal; */
   /* font-family: 'Poppins', sans-serif; */
   color-scheme: dark;
   /* --gradient:linear-gradient(90deg, #8a2387, #e94057, #f27121); */
@@ -315,7 +315,7 @@
   transform: scale(95%);
   transition: 0.15s transform ease-in-out;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .historyBtn:hover {

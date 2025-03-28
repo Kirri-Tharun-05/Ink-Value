@@ -31,8 +31,6 @@ const Home = () => {
   return (
     <div className="">
         <h1>Inside Home Page</h1>
-      {/* <Hero /> */}
-      {/* <Features /> */}
     </div>
   )
 }
