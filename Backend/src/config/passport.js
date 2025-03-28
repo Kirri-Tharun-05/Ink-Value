@@ -112,14 +112,14 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require("mongoose");
 const User = require('../models/user');
 
-const callbackURL = "http://localhost:8080/auth/google/callback";
+// const callbackURL = "http://localhost:8080/auth/google/callback";
 
 passport.use(
     new GoogleStrategy(
         {
             clientID: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: callbackURL,
+            callbackURL: process.env.GOOGLE_CLIENT_REDIRECT,
             scope: [
                 "profile",
                 "email",
