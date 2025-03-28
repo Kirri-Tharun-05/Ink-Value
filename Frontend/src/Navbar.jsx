@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
 import server from './environment';
 import logo from './logos/logo-transparent3.png'
@@ -36,10 +37,6 @@ const Navbar = () => {
     window.addEventListener("userLoggedIn", fetchUser);
     return () => window.removeEventListener("userLoggedIn", fetchUser);
   }, []);
-
-  const handleHistory = () => {
-    navigate('/my_draft_files');
-  }
 
   const handleLogout = async () => {
     try {
@@ -112,42 +109,49 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="lg:hidden p-2" onClick={() => setMenuOpen(!menuOpen)}> {/* ✅ UPDATED: Toggle button */}
+        <button className="lg:hidden p-2" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={28} className="text-white" /> : <Menu size={28} className="text-white" />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {menuOpen && ( // ✅ UPDATED: Conditional rendering for mobile menu
-        <div className="lg:hidden absolute top-16 left-0 w-full bg-neutral-900 p-5 text-center transition-all duration-300">
-          {!currUser ? (
-            <button 
-              className='px-3 py-3 rounded-lg bg-gradient-to-r border-white border-2 signin-btn text-white flex items-center justify-center w-full'
-              onClick={() => window.location.href = `${server}/auth/google`}
-            >
-              <img src={glogo} alt="Google Logo" className='w-8 inline mx-2' />
-              Sign in with Google
-            </button>
-          ) : (
-            <>
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div 
+            initial={{ y: -100, opacity: 0 }} 
+            animate={{ y: 0, opacity: 1 }} 
+            exit={{ y: -100, opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }} 
+            className="lg:hidden absolute top-20 left-0 w-full bg-neutral-900 p-5 text-center shadow-lg -z-0"
+          >
+            {!currUser ? (
               <button 
-                onClick={() => navigate('/my_draft_files')}
-                className="block w-full py-2 my-2 text-white rounded-md text-lg"
-                style={{ background: 'linear-gradient(90deg, #8a2387, #e94057, #f27121)' }}
+                className='px-3 py-3 rounded-lg bg-gradient-to-r border-white border-2 signin-btn text-white flex items-center justify-center w-full'
+                onClick={() => window.location.href = `${server}/auth/google`}
               >
-                My Draft
+                <img src={glogo} alt="Google Logo" className='w-8 inline mx-2' />
+                Sign in with Google
               </button>
-              <button 
-                onClick={handleLogout} 
-                className="block w-full py-2 my-2 text-white rounded-md text-lg"
-                style={{ background: 'linear-gradient(90deg, #8a2387, #e94057, #f27121)' }}
-              >
-                LogOut
-              </button>
-            </>
-          )}
-        </div>
-      )}
+            ) : (
+              <>
+                <button 
+                  onClick={() => navigate('/my_draft_files')}
+                  className="block w-full py-2 my-2 text-white rounded-md text-lg"
+                  style={{ background: 'linear-gradient(90deg, #8a2387, #e94057, #f27121)' }}
+                >
+                  My Draft
+                </button>
+                <button 
+                  onClick={handleLogout} 
+                  className="block w-full py-2 my-2 text-white rounded-md text-lg"
+                  style={{ background: 'linear-gradient(90deg, #8a2387, #e94057, #f27121)' }}
+                >
+                  LogOut
+                </button>
+              </>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
     </>
   )
