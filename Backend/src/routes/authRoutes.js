@@ -1,11 +1,10 @@
 const express = require("express");
 const passport = require('passport')
-const { signin, login, getUser,
+const { getUser,
     loginSuccess,
     loginFailed,
     logout,
-    googleAuth,
-    googleCallback } = require("../controllers/authController.js");
+    } = require("../controllers/authController.js");
 
 const router = express.Router();
 
@@ -13,11 +12,15 @@ router.get('/user', getUser);
 router.get("/login/success", loginSuccess);
 router.get("/login/failed", loginFailed);
 router.get("/logout", logout);
-// router.get("/google", googleAuth);
-// router.get("/google/callback", googleCallback);
-router.post("/signin", signin);
-router.post("/login", login);
 
+router.get('/token', (req, res) => {
+    console.log(req.cookies); // Debugging
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(401).json({ error: "No token found" });
+    }
+    res.json({ token });
+});
 router.get('/google', passport.authenticate('google', {
     scope: [
         "profile", "email", "https://www.googleapis.com/auth/drive.file"

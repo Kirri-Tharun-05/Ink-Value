@@ -63,7 +63,7 @@ const Navbar = () => {
                   <button className='px-3 py-3 rounded-lg bg-gradient-to-r  tracking-wide text-1xl border-white fon border-2 ' onClick={() => window.location.href = `${server}/auth/google`}><img src={glogo} alt="" className='w-8 inline mx-2' />Sign in with Google</button>
               ) : (
                 <>
-                <button onClick={handleHistory} className=" px-4 py-2 text-white rounded-md historyBtn text-xl w-auto whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #8a2387, #e94057, #f27121)' }}>My Draft</button>
+                <button onClick={()=>navigate('/my_draft_files')} className=" px-4 py-2 text-white rounded-md historyBtn text-xl w-auto whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #8a2387, #e94057, #f27121)' }}>My Draft</button>
                 <button onClick={handleLogout} className=" px-4 py-2 text-white rounded-md w-full historyBtn text-xl" style={{ background: 'linear-gradient(90deg, #8a2387, #e94057, #f27121)' }}>LogOut</button>
                  </>
               )
