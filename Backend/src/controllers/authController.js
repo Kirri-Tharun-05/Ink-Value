@@ -2,7 +2,7 @@ const passport = require("passport");
 const User = require("../models/user.js");
 const httpStatus= require('http-status');
 // const CLIENT_URL = "https://video-conference-application-frontend.onrender.com/home";
-const CLIENT_URL = "http://localhost:5173/home";
+const CLIENT_URL = "https://ink-value.onrender.com/home";
 exports.getUser = (req, res) => {
     console.log('inside Get Users route', req.user);
     console.log('inside Get Users route', req.session);

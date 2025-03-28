@@ -45,7 +45,7 @@ router.get(
             path: "/" // Make it accessible everywhere
         });
 
-        res.redirect("http://localhost:5173/home");
+        res.redirect("https://ink-value.onrender.com/home");
     }
 );
 
