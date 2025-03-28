@@ -118,6 +118,9 @@ function LetterContainer() {
     return (
         <div className="p-4">
             <h1 className="text-center text-4xl my-5">Letter Editor</h1>
+            <h1  className="text-center text-4xl font-extrabold my-5 
+             bg-gradient-to-r from-purple-500 to-pink-500 
+             text-transparent bg-clip-text drop-shadow-lg">Letter Editor</h1>
             <JoditEditor
                 ref={editor}
                 value={content}
@@ -135,7 +138,7 @@ function LetterContainer() {
             </div>
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black/30 bg-opacity-10 backdrop-blur-lg flex justify-center items-center text-black">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-80 text-center border-2 border-red-600">
                         <h2 className="text-xl font-semibold mb-4">Enter File Name</h2>
                         <input
                             type="text"

@@ -51,26 +51,6 @@ const Navbar = () => {
   }
   return (
     <>
-      {/* <nav className='sticky top-0 py-6 lg :py-4 sm:py-5 border-b border-neutral-700/80 z-1 backdrop-blur-md'>
-        <div className="container px-4 mx-auto">
-          <div className="flex justify-between items-center">
-            <div className='flex items-center'>
-              <a className='text-2xl' href='/home'><img src={logo} alt="" style={{ height: '4rem' }} className='site-logo'/></a>
-            </div>
-            <div className="lg:flex justify-center space-x-10 items-center">
-              {!currUser ? (
-                  <button className='px-3 py-3 rounded-lg bg-gradient-to-r  tracking-wide text-1xl border-white fon border-2 signin-btn' onClick={() => window.location.href = `${server}/auth/google`}><img src={glogo} alt="" className='w-8 inline mx-2' />Sign in with Google</button>
-              ) : (
-                <>
-                <button onClick={()=>navigate('/my_draft_files')} className=" px-4 py-2 text-white rounded-md historyBtn text-xl w-auto whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #8a2387, #e94057, #f27121)' }}>My Draft</button>
-                <button onClick={handleLogout} className=" px-4 py-2 text-white rounded-md w-full historyBtn text-xl" style={{ background: 'linear-gradient(90deg, #8a2387, #e94057, #f27121)' }}>LogOut</button>
-                 </>
-              )
-              }
-            </div>
-          </div>
-        </div>
-      </nav > */}
        <nav className='sticky top-0 py-6 lg:py-4 sm:py-5 border-b border-neutral-700/80 z-10 backdrop-blur-md bg-opacity-90'> {/* ✅ UPDATED: z-index for mobile */}
       <div className="container px-4 mx-auto flex justify-between items-center">
         {/* Logo */}
