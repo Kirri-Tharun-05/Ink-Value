@@ -20,7 +20,7 @@ const PORT = 8080;
 connectDB();
 
 //  CORS Setup
-app = express();
+const app = express();
 app.set("trust proxy", 1);
 app.use(cors({
     origin: process.env.FRONTEND_URL,
