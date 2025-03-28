@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import isAuth from "../utils/isAuth";
+import isAuth from "../utils/isAuth.jsx";
 import server from "../environment";
 
 const MyDrafts = () => {
@@ -82,5 +82,4 @@ const MyDrafts = () => {
     );
 };
 
-// export default isAuth(MyDrafts);
-export default MyDrafts;
+export default isAuth(MyDrafts);

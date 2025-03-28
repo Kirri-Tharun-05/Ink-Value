@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import server from './environment';
+import logo from './logos/logo-transparent3.png'
+import glogo from './logos/google_logo.png'
 const Navbar = () => {
   const [currUser, setCurrUser] = useState(null);
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ const Navbar = () => {
       const res = await axios.get(`${server}/auth/user`, {
         withCredentials: true // ✅ Required for cookies
       });
-      console.log('inside Navbar.hsx : ',res);
+      console.log('inside Navbar.hsx : ', res);
       setCurrUser(res.data); // ✅ Set user state
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -33,7 +35,7 @@ const Navbar = () => {
     return () => window.removeEventListener("userLoggedIn", fetchUser);
   }, []);
 
-  const handleHistory = ()=>{
+  const handleHistory = () => {
     navigate('/my_draft_files');
   }
 
@@ -52,21 +54,18 @@ const Navbar = () => {
     <>
       <nav className='sticky top-0 py-6 lg :py-4 sm:py-5 border-b border-neutral-700/80 z-1 backdrop-blur-md'>
         <div className="container px-4 mx-auto">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div className='flex items-center'>
-              <a className='text-2xl' href='/home'>😉 Let's Talk</a>
+              <a className='text-2xl' href='/home'><img src={logo} alt="" style={{ height: '4rem' }} /></a>
             </div>
             <div className="lg:flex justify-center space-x-10 items-center">
               {!currUser ? (
-                <>
-                  <Link to={'/signin'} className='border-2 px-3 py-2 rounded-lg'>Sign in</Link>
-                  <Link to={'/login'} className='border-2 px-4 py-2 rounded-lg bg-gradient-to-r from-orange-500 to-orange-900 '>Log in</Link>
-                </>
+                  <button className='px-3 py-3 rounded-lg bg-gradient-to-r  tracking-wide text-1xl border-white fon border-2 ' onClick={() => window.location.href = `${server}/auth/google`}><img src={glogo} alt="" className='w-8 inline mx-2' />Sign in with Google</button>
               ) : (
                 <>
-                  <button onClick={handleHistory}>My Draft</button>
-                  < button className='cursor-pointer border-2 px-4 py-2 rounded-lg bg-gradient-to-r from-orange-500 to-orange-900 pointer' onClick={handleLogout}>Log Out</button>
-                </>
+                <button onClick={handleHistory} className=" px-4 py-2 text-white rounded-md historyBtn text-xl w-auto whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #8a2387, #e94057, #f27121)' }}>My Draft</button>
+                <button onClick={handleLogout} className=" px-4 py-2 text-white rounded-md w-full historyBtn text-xl" style={{ background: 'linear-gradient(90deg, #8a2387, #e94057, #f27121)' }}>LogOut</button>
+                 </>
               )
               }
             </div>

@@ -315,7 +315,8 @@
   transform: scale(95%);
   transition: 0.15s transform ease-in-out;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-  font-weight: 500;
+  font-weight: 400;
+  
 }
 
 .historyBtn:hover {

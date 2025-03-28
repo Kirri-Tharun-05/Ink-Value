@@ -1,10 +1,11 @@
-
 import React, { useState, useRef, useEffect } from "react";
 import JoditEditor from "jodit-react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import isAuth from "../utils/isAuth.jsx";
+import { toast } from "react-toastify";
 
-export const LetterContainer = () => {
+function LetterContainer() {
     const { id: draftId } = useParams();
     const editor = useRef(null);
     const [content, setContent] = useState("");
@@ -12,6 +13,10 @@ export const LetterContainer = () => {
     const [user, setUser] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [fileName, setFileName] = useState("");
+    const [isSavingToDrive, setIsSavingToDrive] = useState(false);
+
+    const [isLoading, setIsLoading] = useState(false);
+
     // Load draft when component mounts
     useEffect(() => {
         if (draftId) {
@@ -56,11 +61,11 @@ export const LetterContainer = () => {
                     withCredentials: true
                 });
             console.log("Draft saved:", response.data);
-            alert("Draft saved successfully!");
+            toast.success("📂✨ File Successfully Saved to Drafts! 📝🚀");
             setIsModalOpen(false);
         } catch (error) {
             console.error("Error saving draft:", error.response?.data || error.message);
-            alert("Failed to save draft.");
+            toast.error("❌⚠️ Oops! Failed to Save File to Drafts. Please Try Again! 🔄");
         }
     };
 
@@ -68,35 +73,43 @@ export const LetterContainer = () => {
     // Upload file to Google Drive via backend
     const saveToDrive = async () => {
         if (!token) {
-            alert("Please log in first.");
+            toast.error("Please log in first.");
             return;
         }
-
+        setIsLoading(true);
         console.log("Saving to Google Drive with token:", token); // ✅ Debugging log
 
         try {
             const response = await axios.post(
                 "http://localhost:8080/upload",
-                { content, fileName: "MyLetter8.doc" },
+                { content, fileName: fileName },
                 { withCredentials: true }
             );
 
             console.log("Response from server:", response.data); // ✅ Debugging log
 
             if (response.data.success) {
-                alert(`File saved! File ID: ${response.data.fileId}`);
+                toast.success("✨🚀 Your File Has Been Successfully Saved to Google Drive! 📂✅");
             } else {
-                alert("Error saving file.");
+                toast.error("Error saving file.");
             }
+            setIsModalOpen(false);
         } catch (error) {
             console.error("Error in saveToDrive:", error); // ✅ Logs any errors
-            alert("Failed to save file.");
+            toast.error("Failed to save file.");
+        } finally {
+            setIsLoading(false); // ✅ Hide loading after request completes
         }
     };
-    const openModal = () => {
+    const confirm = () => {
+        setIsSavingToDrive(false);
         setIsModalOpen(true);
     };
 
+    const confirmForDrive = () => {
+        setIsSavingToDrive(true);
+        setIsModalOpen(true);
+    }
     // Close modal without saving
     const closeModal = () => {
         setIsModalOpen(false);
@@ -114,10 +127,10 @@ export const LetterContainer = () => {
             />
 
             <div className="flex justify-center gap-4 mt-4">
-                <button onClick={openModal} className="historyBtn px-4 py-2 bg-blue-500 text-white rounded">
+                <button onClick={confirm} className="historyBtn px-4 py-2 bg-blue-500 text-white rounded">
                     Save Draft
                 </button>
-                <button onClick={saveToDrive} className="historyBtn px-4 py-2 bg-green-500 text-white rounded">
+                <button onClick={confirmForDrive} className="historyBtn px-4 py-2 bg-green-500 text-white rounded">
                     Save to Google Drive
                 </button>
             </div>
@@ -136,13 +149,26 @@ export const LetterContainer = () => {
                             <button onClick={closeModal} className="px-4 py-2 bg-red-600 text-white rounded historyBtn">
                                 Cancel
                             </button>
-                            <button onClick={saveDraft} className="px-4 py-2 bg-green-600 text-white rounded historyBtn">
-                                Save
-                            </button>
+                            {
+                                isSavingToDrive
+                                    ? <button onClick={saveToDrive} className="px-4 py-2 bg-green-600 text-white rounded historyBtn">Save</button>
+                                    : <button onClick={saveDraft} className="px-4 py-2 bg-green-600 text-white rounded historyBtn">Save</button>
+                            }
+
                         </div>
+                    </div>
+                </div>
+            )}
+            {isLoading && (
+                <div className="fixed inset-0 flex justify-center items-center bg-black/30 backdrop-blur-lg">
+                    <div className="bg-white p-6 rounded-lg shadow-lg text-center flex flex-col items-center">
+                        <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+                        <p className="mt-4 text-lg font-semibold text-black">Saving to Google Drive...</p>
                     </div>
                 </div>
             )}
         </div>
     );
 };
+
+export default isAuth(LetterContainer);
