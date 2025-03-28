@@ -102,6 +102,7 @@ This project is licensed under the MIT License.
 
 ## 📞 Contact
 For queries or feedback, reach out via:
-- **GitHub**: [your-username](https://github.com/your-username)
-- **Email**: your-email@example.com
+- **GitHub**: [Kirri-Tharun-05](https://github.com/Kirri-Tharun-05)
+- **Email**: tharunprajitha2017@gmail.com
+- **LinkedIn**: [Kirri-Tharun](https://www.linkedin.com/in/kirri-tharun/)
 
