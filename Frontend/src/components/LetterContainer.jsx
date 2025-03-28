@@ -119,8 +119,7 @@ function LetterContainer() {
         <div className="p-4">
             <h1 className="text-center text-4xl my-5">Letter Editor</h1>
             <h1  className="text-center text-4xl font-extrabold my-5 
-             bg-gradient-to-r from-purple-500 to-pink-500 
-             text-transparent bg-clip-text drop-shadow-lg">Letter Editor</h1>
+             bg-gradient-to-r bg-clip-text drop-shadow-lg">Letter Editor</h1>
             <JoditEditor
                 ref={editor}
                 value={content}
